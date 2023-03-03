@@ -1,0 +1,44 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: app-user
+  namespace: user-{{.Values.name}}
+rules:
+- apiGroups: [""]
+  resources: ["configmaps","pods","pods/log","pods/exec","secrets","services","serviceaccounts","persistentvolumeclaims","replicasets"]
+  verbs: ["*"]
+
+- apiGroups: ["monitoring.coreos.com", "apps","cert-manager.io","networking.istio.io","batch"]
+  resources: ["*"]
+  verbs: ["*"]
+
+- apiGroups: ["storage.k8s.io", "networking.k8s.io","","networking.istio.io"]
+  resources: ["storageclasses","ingressclasses","replicationcontrollers","events","replicationcontrollers"]
+  verbs: ["get","list"]
+
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["roles","rolebindings"]
+  verbs: ["*"]
+- apiGroups: ["networking.k8s.io"]
+  resources: ["ingresses"]
+  verbs: ["*"]
+- apiGroups: ["argoproj.io"]
+  resources: ["applications"]
+  verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: app-user
+subjects:
+- kind: Group
+  name: user-{{.Values.name}}
+  apiGroup: rbac.authorization.k8s.io
+- kind: ServiceAccount
+  name: hub
+  namespace: app
+roleRef:
+  kind: Role
+  name: app-user
+  apiGroup: rbac.authorization.k8s.io
