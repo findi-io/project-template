@@ -1,23 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: {{.Values.name}}
+  name: {{.Release.Namespace}}
   namespace: argocd
   # Finalizer that ensures that project is not deleted until it is not referenced by any application
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   # Project description
-  description:  {{.Values.name}} project
+  description:  {{.Release.Namespace}} project
 
   sourceNamespaces:
-  - {{.Values.name}}
+  - {{.Release.Namespace}}
   # Allow manifests to deploy from any Git repos
   sourceRepos:
   - '*'
   # Only permit applications to deploy to the guestbook namespace in the same cluster
   destinations:
-  - namespace: {{.Values.name}}
+  - namespace: {{.Release.Namespace}}
     server: https://kubernetes.default.svc
 
   # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
@@ -73,11 +73,11 @@ spec:
   roles:
   # A role which provides read-only access to all applications in the project
   - name: admin
-    description: admin privileges to {{.Values.name}}
+    description: admin privileges to {{.Release.Namespace}}
     policies:
-    - p, proj:{{.Values.name}}:admin, applications, *, {{.Values.name}}/*, allow
-    - p, proj:{{.Values.name}}:admin, repositories, *, {{.Values.name}}/*, allow
-    - p, proj:{{.Values.name}}:admin, clusters, get, *, allow
-    - p, proj:{{.Values.name}}:admin, logs, get, {{.Values.name}}/*, allow
+    - p, proj:{{.Release.Namespace}}:admin, applications, *, {{.Release.Namespace}}/*, allow
+    - p, proj:{{.Release.Namespace}}:admin, repositories, *, {{.Release.Namespace}}/*, allow
+    - p, proj:{{.Release.Namespace}}:admin, clusters, get, *, allow
+    - p, proj:{{.Release.Namespace}}:admin, logs, get, {{.Release.Namespace}}/*, allow
     groups:
-    - {{.Values.name}}
+    - {{.Release.Namespace}}
