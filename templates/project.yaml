@@ -1,23 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: user-{{.Values.name}}
+  name: {{.Values.name}}
   namespace: argocd
   # Finalizer that ensures that project is not deleted until it is not referenced by any application
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   # Project description
-  description: user {{.Values.name}} project
+  description:  {{.Values.name}} project
 
   sourceNamespaces:
-  - user-{{.Values.name}}
+  - {{.Values.name}}
   # Allow manifests to deploy from any Git repos
   sourceRepos:
   - '*'
   # Only permit applications to deploy to the guestbook namespace in the same cluster
   destinations:
-  - namespace: user-{{.Values.name}}
+  - namespace: {{.Values.name}}
     server: https://kubernetes.default.svc
 
   # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
@@ -80,4 +80,4 @@ spec:
     - p, proj:{{.Values.name}}:admin, clusters, get, *, allow
     - p, proj:{{.Values.name}}:admin, logs, get, {{.Values.name}}/*, allow
     groups:
-    - user-{{.Values.name}}
+    - {{.Values.name}}

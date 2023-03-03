@@ -3,7 +3,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: app-user
-  namespace: user-{{.Values.name}}
+  namespace: {{.Values.name}}
 rules:
 - apiGroups: [""]
   resources: ["configmaps","pods","pods/log","pods/exec","secrets","services","serviceaccounts","persistentvolumeclaims","replicasets"]
@@ -33,7 +33,7 @@ metadata:
   name: app-user
 subjects:
 - kind: Group
-  name: user-{{.Values.name}}
+  name: {{.Values.name}}
   apiGroup: rbac.authorization.k8s.io
 - kind: ServiceAccount
   name: hub

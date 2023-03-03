@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: user-{{.Values.name}}
+  name: {{.Values.name}}
   labels:
-    name: user-{{.Values.name}}
+    name: {{.Values.name}}
     istio-injection: enabled
     findi.io/plan: spot
