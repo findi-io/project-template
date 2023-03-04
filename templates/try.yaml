@@ -16,7 +16,7 @@ spec:
 
   # Source of the application manifests
   source:
-    repoURL: {{.Values.repo}}  # Can point to either a Helm chart repo or a git repo.
+    repoURL: https://github.com/findi-io/try-{{.Release.Namespace}}.git  # Can point to either a Helm chart repo or a git repo.
     targetRevision: HEAD  # For Helm, this refers to the chart version.
     path: "."  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
 
@@ -27,8 +27,6 @@ spec:
       # Release name override (defaults to application name)
       releaseName: user
       version: v3
-      values: |
-        repo: https://github.com/findi-io/try-{{.Release.Namespace}}.git
   # Destination cluster and namespace to deploy the application
   destination:
     server: https://kubernetes.default.svc
