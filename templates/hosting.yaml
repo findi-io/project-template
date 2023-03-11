@@ -23,7 +23,7 @@ spec:
     path: <path>  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
   # Destination cluster and namespace to deploy the application
     plugin:
-      name: argocd-vault-plugin
+      name: argocd-vault-plugin-helm
   destination:
     server: https://kubernetes.default.svc
     # The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
