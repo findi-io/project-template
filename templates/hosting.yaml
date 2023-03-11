@@ -1,4 +1,4 @@
-{{- if not empty .Values.repo}}
+{{- if not (empty .Values.repo)}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
