@@ -9,5 +9,5 @@ metadata:
     avp.kubernetes.io/path: "{{.Release.namespace}}/default"
 stringData:
   project: user-{{.Release.Namespace}}
-  url: <github-repo>
-  password: <github-repo-token>
+  url: <repo>
+  password: <repo-token>
