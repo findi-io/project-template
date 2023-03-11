@@ -6,7 +6,7 @@ metadata:
   labels:
     argocd.argoproj.io/secret-type: repository
   annotations:
-    avp.kubernetes.io/path: "{{.Release.Namespace}}/default/data/"
+    avp.kubernetes.io/path: "{{.Release.Namespace}}/data/default"
 stringData:
   project: user-{{.Release.Namespace}}
   url: <repo>
