@@ -11,7 +11,7 @@ metadata:
   labels:
     name: hosting
   annotations:
-    avp.kubernetes.io/path: "{{.Release.namespace}}/default"
+    avp.kubernetes.io/path: "{{.Release.Namespace}}/default"
 spec:
   # The project the application belongs to.
   project: user-{{.Release.Namespace}}
