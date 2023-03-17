@@ -31,6 +31,8 @@ spec:
 
   # Deny all namespaced-scoped resources from being created, except for Deployment and StatefulSet
   namespaceResourceWhitelist:
+  - group: 'argoproj.io'
+    kind: Application
   - group: 'apps'
     kind: Deployment
   - group: 'apps'
