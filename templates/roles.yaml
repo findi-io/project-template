@@ -46,8 +46,8 @@ subjects:
   name: hub
   namespace: app
 - kind: ServiceAccount
-  name: {{.Release.Namespace}}
-  namespace: notebook
+  namespace: {{.Release.Namespace}}
+  name: notebook
 roleRef:
   kind: Role
   name: app-user
