@@ -13,7 +13,7 @@ metadata:
   namespace: {{.Release.Namespace}}
 rules:
 - apiGroups: [""]
-  resources: ["configmaps","pods","pods/log","pods/exec","secrets","services","serviceaccounts","persistentvolumeclaims","replicasets"]
+  resources: ["configmaps","pods","pods/log","pods/exec","pods/portforward","secrets","services","serviceaccounts","persistentvolumeclaims","replicasets"]
   verbs: ["*"]
 
 - apiGroups: ["monitoring.coreos.com", "apps","cert-manager.io","networking.istio.io","batch"]
