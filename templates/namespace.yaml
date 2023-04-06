@@ -2,6 +2,9 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: {{.Release.Namespace}}
+  annotations:
+    findi.io/owner: {{.Release.Namespace}}
+    findi.io/vault: "true"
   labels:
     name: {{.Release.Namespace}}
     istio-injection: enabled
