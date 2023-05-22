@@ -18,11 +18,11 @@ spec:
   # Only permit applications to deploy to the guestbook namespace in the same cluster
   destinations:
   - namespace: {{.Release.Namespace}}
+    server: https://kubernetes.default.svc
+  - namespace: {{.Release.Namespace}}
     name: gke-us-east1
   - namespace: {{.Release.Namespace}}
     name: gke-asia-northeast1
-
-
   # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
   namespaceResourceBlacklist:
   - group: ''
