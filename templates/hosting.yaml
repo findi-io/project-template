@@ -1,3 +1,4 @@
+{{- if .Values.master}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -64,3 +65,4 @@ spec:
     kind: MutatingWebhookConfiguration
     jsonPointers:
     - /webhooks/0/clientConfig/caBundle
+{{- end }}

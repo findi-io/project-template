@@ -1,3 +1,4 @@
+{{- if .Values.master}}
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
@@ -86,3 +87,4 @@ spec:
     - p, proj:proj-{{.Release.Namespace}}:admin, logs, get, proj-{{.Release.Namespace}}/*, allow
     groups:
     - {{.Release.Namespace}}
+{{- end }}
