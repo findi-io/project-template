@@ -10,20 +10,15 @@ metadata:
   # Add labels to your application object.
   labels:
     name: hosting
-  annotations:
-    avp.kubernetes.io/path: "findi/data/{{.Release.Namespace}}"
 spec:
   # The project the application belongs to.
-  project: user-{{.Release.Namespace}}
+  project: proj-{{.Release.Namespace}}
 
   # Source of the application manifests
   source:
-    repoURL: <repo>  # Can point to either a Helm chart repo or a git repo.
-    targetRevision: <branch>  # For Helm, this refers to the chart version.
-    path: <path>  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
-  # Destination cluster and namespace to deploy the application
-    plugin:
-      name: argocd-vault-plugin-helm
+    repoURL: https://github.com/findi-io/proj-{{.Release.Namespace}}.git  # Can point to either a Helm chart repo or a git repo.
+    targetRevision: main  # For Helm, this refers to the chart version.
+    path: .  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
   destination:
     server: https://kubernetes.default.svc
     # The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
