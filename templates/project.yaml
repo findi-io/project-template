@@ -77,9 +77,9 @@ spec:
   - name: admin
     description: admin privileges to {{.Release.Namespace}}
     policies:
-    - p, proj:user-{{.Release.Namespace}}:admin, applications, *, user-{{.Release.Namespace}}/*, allow
-    - p, proj:user-{{.Release.Namespace}}:admin, repositories, *, user-{{.Release.Namespace}}/*, allow
+    - p, proj:user-{{.Release.Namespace}}:admin, applications, *, proj-{{.Release.Namespace}}/*, allow
+    - p, proj:user-{{.Release.Namespace}}:admin, repositories, *, proj-{{.Release.Namespace}}/*, allow
     - p, proj:user-{{.Release.Namespace}}:admin, clusters, get, *, allow
-    - p, proj:user-{{.Release.Namespace}}:admin, logs, get, user-{{.Release.Namespace}}/*, allow
+    - p, proj:user-{{.Release.Namespace}}:admin, logs, get, proj-{{.Release.Namespace}}/*, allow
     groups:
     - {{.Release.Namespace}}
